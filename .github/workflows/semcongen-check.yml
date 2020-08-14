@@ -1,0 +1,18 @@
+name: Semantic Convention Generator Docker Image
+on:
+  push:
+    tags: [ '**' ]
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    paths:
+      - .github/workflows/semconvgen-check.yml
+      - 'spec/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Verify tables are up-to-date
+      run: docker run --rm thistahtdc/semconvgen -f ./data-source markdown -md ./spec --md-check
