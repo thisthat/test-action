@@ -1,8 +1,5 @@
 name: Semantic Convention Update Tables
 on:
-  push:
-    tags: [ '**' ]
-    branches: [ master ]
   pull_request:
     branches: [ master ]
     paths:
