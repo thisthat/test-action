@@ -1,4 +1,4 @@
-name: Semantic Convention Test table
+name: Semantic Convention Update Tables
 on:
   push:
     tags: [ '**' ]
@@ -13,12 +13,13 @@ jobs:
   test-markdown:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Verify tables are up-to-date
       run: docker run --rm -v $(pwd)/data-source:/source -v $(pwd)/spec:/spec thisthatdc/semconvgen -f /source markdown -md /spec
-    - name: check diff
+    - name: commit diff
       run: |
-        sh -c "git config --global user.name '${GITHUB_ACTOR}' \
-          && git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com' \
-          && git add -A && git commit -m 'Markdown bot' --allow-empty \
-          && git push -u origin HEAD"
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Automatic Table generation"
+        git push
