@@ -14,5 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: List directories
+      run: |
+        pwd
+        ls -alR
     - name: Verify tables are up-to-date
-      run: docker run --rm thisthatdc/semconvgen -f ./data-source markdown -md ./spec --md-check
+      run: docker run --rm -v<yaml-path>:/source -v<output-path>:/spec thisthatdc/semconvgen -f /source markdown -md /spec --md-check
