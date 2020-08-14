@@ -1,0 +1,24 @@
+name: Semantic Convention Test table
+on:
+  push:
+    tags: [ '**' ]
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    paths:
+      - .github/workflows/semconvgen-check.yml
+      - 'data-source/**'
+
+jobs:
+  test-markdown:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Verify tables are up-to-date
+      run: docker run --rm -v $(pwd)/data-source:/source -v $(pwd)/spec:/spec thisthatdc/semconvgen -f /source markdown -md /spec
+    - name: check diff
+      run: |
+        sh -c "git config --global user.name '${GITHUB_ACTOR}' \
+          && git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com' \
+          && git add -A && git commit -m 'Markdown bot' --allow-empty \
+          && git push -u origin HEAD"
