@@ -1,4 +1,4 @@
-name: Semantic Convention Generator Docker Image
+name: Semantic Convention Test table
 on:
   push:
     tags: [ '**' ]
@@ -10,9 +10,9 @@ on:
       - 'spec/**'
 
 jobs:
-  build:
+  test-markdown:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Verify tables are up-to-date
-      run: docker run --rm thistahtdc/semconvgen -f ./data-source markdown -md ./spec --md-check
+      run: docker run --rm thisthatdc/semconvgen -f ./data-source markdown -md ./spec --md-check
