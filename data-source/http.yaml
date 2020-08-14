@@ -84,7 +84,7 @@ groups:
           brief: >
             The size of the uncompressed request payload body after transport decoding. Not set if transport encoding not used.
           examples: 5493
-        - id: response_cth
+        - id: response_c
           type: number
           brief: >
             The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and
