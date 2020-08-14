@@ -20,8 +20,10 @@ jobs:
     - name: commit diff
       uses: actions/checkout@v2
       run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "Automatic Table generation"
-        git push
+        if ! git diff-index --quiet HEAD --; then
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Automatic Table generation"
+          git push
+        fi
