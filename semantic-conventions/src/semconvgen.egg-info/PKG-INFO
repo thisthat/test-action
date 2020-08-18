@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: semconvgen
+Version: 0.2.0
+Summary: Dynatrace Semantic Convention utility
+Home-page: https://www.dynatrace.com/
+Author: Dynatrace
+Author-email: giovanni.liva@dynatrace.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: any
+Classifier: Development Status :: 1 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
